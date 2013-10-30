@@ -31,7 +31,7 @@ namespace MovescountContrib.Web.Controllers
             var serializer = (IStringSerializer)factory.Build(iCal.GetType(), ctx);
 
             string output = serializer.SerializeToString(iCal);
-            return File(Encoding.UTF8.GetBytes(output), "text/calendar", "Movescount.ical");
+            return File(Encoding.UTF8.GetBytes(output), "text/calendar; charset=UTF-8", "Movescount.ical");
         }
     }
 }

@@ -17,9 +17,11 @@ module PlannedMoves =
                 |> Seq.cast<Match>
                 |> Seq.last
                 |> fun m -> m.Groups.[1].Value
-                |> fun json -> json.Replace(@"\", "")
+                |> fun j -> j.Replace("\\\"", "\"").Replace("\\\/", "/")
 
-            return JsonConvert.DeserializeObject<TrainingPlan>(jsonString)
+            let settings = new JsonSerializerSettings()
+            settings.StringEscapeHandling <- StringEscapeHandling.EscapeHtml
+            return JsonConvert.DeserializeObject<TrainingPlan>(jsonString, settings)
         }
 
     let getTrainingPlanCal email password =
@@ -42,5 +44,4 @@ module PlannedMoves =
                 event.Sequence <- 1
                 ())
             |> ignore
-
         iCal
