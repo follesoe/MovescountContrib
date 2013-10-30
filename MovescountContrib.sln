@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MovescountContrib.Lib", "MovescountContrib.Lib\MovescountContrib.Lib.fsproj", "{EAA9F2D0-35B1-4D9F-A789-A76830949491}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{377593A7-4487-440E-853E-CD5F2583E454}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovescountContrib.Web", "MovescountContrib.Web\MovescountContrib.Web.csproj", "{0DB57443-0E98-41E8-B604-B68973956B5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EAA9F2D0-35B1-4D9F-A789-A76830949491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAA9F2D0-35B1-4D9F-A789-A76830949491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAA9F2D0-35B1-4D9F-A789-A76830949491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAA9F2D0-35B1-4D9F-A789-A76830949491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB57443-0E98-41E8-B604-B68973956B5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB57443-0E98-41E8-B604-B68973956B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB57443-0E98-41E8-B604-B68973956B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB57443-0E98-41E8-B604-B68973956B5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
