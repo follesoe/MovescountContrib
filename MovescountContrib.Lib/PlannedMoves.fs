@@ -25,7 +25,11 @@ module PlannedMoves =
     let getTrainingPlanCal email password =
         let plan = (getTrainingPlan email password) |> Async.RunSynchronously
         let iCal = new iCalendar()
-        iCal.ProductID <- sprintf "Movescount Planned Moves for %s" email
+        let calName = sprintf "%s (Movecount)" email
+        let calDescription = sprintf "Movescount.com Planned Moves for %s" email
+
+        iCal.AddProperty("X-WR-CALNAME", calName)
+        iCal.AddProperty("X-WR-CALDESC", calDescription)
 
         plan.ScheduledMoves |>
             Seq.iter(fun m ->
@@ -35,6 +39,7 @@ module PlannedMoves =
                 event.Description <- m.Description
                 event.Summary <- getEventTitle m
                 event.UID <- (m.ID.ToString())
+                event.Sequence <- 1
                 ())
             |> ignore
 
