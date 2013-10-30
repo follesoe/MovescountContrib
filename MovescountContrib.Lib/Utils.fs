@@ -91,4 +91,4 @@ module Utils =
     let getEventTitle (plannedMove:ScheduledMove) =
         let activityName = getActivityName plannedMove.ActivityID
         let intensityName = getIntensityName plannedMove.IntensityLevel
-        sprintf "%s for %d min, %s" activityName plannedMove.Duration intensityName
+        sprintf "%s for %d min %s" activityName plannedMove.Duration intensityName
