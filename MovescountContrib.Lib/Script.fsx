@@ -10,6 +10,3 @@
 #load "PlannedMoves.fs"
 
 open MovescountContrib.Lib
-
-//let plan = (PlannedMoves.getTrainingPlan "jonas@follesoe.no" "password") |> Async.RunSynchronously
-let cal = (PlannedMoves.getTrainingPlanCal "jonas@follesoe.no" "password") |> Async.RunSynchronously
