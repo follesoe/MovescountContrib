@@ -6,6 +6,7 @@ open MovescountContrib.Lib.DataTypes
 
 module PlannedMoves =
     open MovescountContrib.Lib.MovescountClient
+    open MovescountContrib.Lib.Utils
     open DDay.iCal
 
     let getTrainingPlan email password =
@@ -24,6 +25,7 @@ module PlannedMoves =
     let getTrainingPlanCal email password =
         let plan = (getTrainingPlan email password) |> Async.RunSynchronously
         let iCal = new iCalendar()
+        iCal.Name <- sprintf "Movescount Planned Moves for %s" email
 
         plan.ScheduledMoves |>
             Seq.iter(fun m ->
@@ -31,6 +33,7 @@ module PlannedMoves =
                 event.IsAllDay <- true
                 event.Start <- new iCalDateTime(m.Day.Date)
                 event.Description <- m.Description
+                event.Name <- getEventTitle m
                 ())
             |> ignore
 
