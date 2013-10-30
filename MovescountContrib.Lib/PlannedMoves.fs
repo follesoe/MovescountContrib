@@ -25,7 +25,7 @@ module PlannedMoves =
     let getTrainingPlanCal email password =
         let plan = (getTrainingPlan email password) |> Async.RunSynchronously
         let iCal = new iCalendar()
-        iCal.Name <- sprintf "Movescount Planned Moves for %s" email
+        iCal.ProductID <- sprintf "Movescount Planned Moves for %s" email
 
         plan.ScheduledMoves |>
             Seq.iter(fun m ->
