@@ -33,7 +33,8 @@ module PlannedMoves =
                 event.IsAllDay <- true
                 event.Start <- new iCalDateTime(m.Day.Date)
                 event.Description <- m.Description
-                event.Name <- getEventTitle m
+                event.Summary <- getEventTitle m
+                event.UID <- (m.ID.ToString())
                 ())
             |> ignore
 
