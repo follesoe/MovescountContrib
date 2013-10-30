@@ -36,12 +36,12 @@ module PlannedMoves =
         plan.ScheduledMoves |>
             Seq.iter(fun m ->
                 let event = iCal.Create<Event>()
+                event.Properties.Remove("SEQUENCE") |> ignore
                 event.IsAllDay <- true
                 event.Start <- new iCalDateTime(m.Day.Date)
                 event.Description <- m.Description
                 event.Summary <- getEventTitle m
                 event.UID <- (m.ID.ToString())
-                event.Sequence <- 1
                 ())
             |> ignore
         iCal
