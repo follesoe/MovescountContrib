@@ -46,6 +46,7 @@ module PlannedMoves =
 
         iCal.AddProperty("X-WR-CALNAME", calName)
         iCal.AddProperty("X-WR-CALDESC", calDescription)
+        iCal.Method <- "REQUEST"
 
         plan.ScheduledMoves |>
             Seq.iter(fun m ->
@@ -64,6 +65,7 @@ module PlannedMoves =
                     event.IsAllDay <- true
                     event.Start <- new iCalDateTime(m.Day.Date)
 
+                event.Organizer <- new Organizer(email)
                 event.Description <- m.Description
                 event.Summary <- getEventTitle m
                 event.UID <- (m.ID.ToString())
