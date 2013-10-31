@@ -46,7 +46,6 @@ module PlannedMoves =
 
         iCal.AddProperty("X-WR-CALNAME", calName)
         iCal.AddProperty("X-WR-CALDESC", calDescription)
-        iCal.AddTimeZone(TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time")) |> ignore
 
         plan.ScheduledMoves |>
             Seq.iter(fun m ->
