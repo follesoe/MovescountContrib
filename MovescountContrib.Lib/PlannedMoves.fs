@@ -40,15 +40,12 @@ module PlannedMoves =
 
     let getTrainingPlanCal email password =
         let plan = (getTrainingPlan email password) |> Async.RunSynchronously
-        let timeZone = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time")
-
         let iCal = new iCalendar()
         let calName = sprintf "%s (Movecount)" email
         let calDescription = sprintf "Movescount.com Planned Moves for %s" email
 
         iCal.AddProperty("X-WR-CALNAME", calName)
         iCal.AddProperty("X-WR-CALDESC", calDescription)
-        iCal.AddTimeZone(timeZone) |> ignore
 
         plan.ScheduledMoves |>
             Seq.iter(fun m ->
@@ -60,7 +57,9 @@ module PlannedMoves =
                 | Some(date) ->
                     event.IsAllDay <- false
                     event.Start <- new iCalDateTime(date)
+                    event.Start.IsUniversalTime <- false
                     event.End <- new iCalDateTime((date.AddMinutes((Convert.ToDouble(m.Duration)))))
+                    event.End.IsUniversalTime <- false
                 | None ->
                     event.IsAllDay <- true
                     event.Start <- new iCalDateTime(m.Day.Date)
