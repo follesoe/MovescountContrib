@@ -60,8 +60,8 @@ module PlannedMoves =
                 match getStartTime m with
                 | Some(date) ->
                     event.IsAllDay <- false
-                    event.Start <- new iCalDateTime(date)
-                    event.End <- new iCalDateTime((date.AddMinutes((Convert.ToDouble(m.Duration)))))
+                    event.Start <- new iCalDateTime(date, timezone.TZID)
+                    event.End <- new iCalDateTime((date.AddMinutes((Convert.ToDouble(m.Duration)))), timezone.TZID)
                 | None ->
                     event.IsAllDay <- true
                     event.Start <- new iCalDateTime(m.Day.Date)
