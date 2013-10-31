@@ -67,6 +67,8 @@ module PlannedMoves =
                 event.Description <- m.Description
                 event.Summary <- getEventTitle m
                 event.UID <- (m.ID.ToString())
+                event.Categories.Add((getActivityName m.ActivityID)) |> ignore
+                event.Categories.Add("Movescount") |> ignore
                 ())
             |> ignore
         iCal
