@@ -64,6 +64,7 @@ module PlannedMoves =
                 | None ->
                     event.IsAllDay <- true
                     event.Start <- new iCalDateTime(m.Day.Date)
+                    event.End <- new iCalDateTime(m.Day.Date)
 
                 event.Organizer <- new Organizer(email)
                 event.Description <- m.Description
