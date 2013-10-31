@@ -46,7 +46,7 @@ module PlannedMoves =
 
         iCal.AddProperty("X-WR-CALNAME", calName)
         iCal.AddProperty("X-WR-CALDESC", calDescription)
-        iCal.Method <- "REQUEST"
+        iCal.Method <- "PUBLISH"
 
         plan.ScheduledMoves |>
             Seq.iter(fun m ->
