@@ -43,6 +43,8 @@ module PlannedMoves =
         let iCal = new iCalendar()
         let calName = sprintf "%s (Movecount)" email
         let calDescription = sprintf "Movescount.com Planned Moves for %s" email
+        let timezoneinfo = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time")
+        let timezone = iCalTimeZone.FromSystemTimeZone(timezoneinfo);
 
         iCal.AddProperty("X-WR-CALNAME", calName)
         iCal.AddProperty("X-WR-CALDESC", calDescription)
@@ -57,10 +59,8 @@ module PlannedMoves =
                 match getStartTime m with
                 | Some(date) ->
                     event.IsAllDay <- false
-                    event.Start <- new iCalDateTime(date)
-                    event.Start.IsUniversalTime <- false
-                    event.End <- new iCalDateTime((date.AddMinutes((Convert.ToDouble(m.Duration)))))
-                    event.End.IsUniversalTime <- false
+                    event.Start <- new iCalDateTime(date, timezone.TZID)
+                    event.End <- new iCalDateTime((date.AddMinutes((Convert.ToDouble(m.Duration)))), timezone.TZID)
                 | None ->
                     event.IsAllDay <- true
                     event.Start <- new iCalDateTime(m.Day.Date)
