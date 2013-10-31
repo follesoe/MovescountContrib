@@ -48,6 +48,7 @@ module PlannedMoves =
 
         iCal.AddProperty("X-WR-CALNAME", calName)
         iCal.AddProperty("X-WR-CALDESC", calDescription)
+        iCal.AddTimeZone(timezoneinfo) |> ignore
         iCal.Method <- "PUBLISH"
 
         plan.ScheduledMoves |>
@@ -59,8 +60,8 @@ module PlannedMoves =
                 match getStartTime m with
                 | Some(date) ->
                     event.IsAllDay <- false
-                    event.Start <- new iCalDateTime(date, timezone.TZID)
-                    event.End <- new iCalDateTime((date.AddMinutes((Convert.ToDouble(m.Duration)))), timezone.TZID)
+                    event.Start <- new iCalDateTime(date)
+                    event.End <- new iCalDateTime((date.AddMinutes((Convert.ToDouble(m.Duration)))))
                 | None ->
                     event.IsAllDay <- true
                     event.Start <- new iCalDateTime(m.Day.Date)
