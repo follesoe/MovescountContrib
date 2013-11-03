@@ -51,9 +51,9 @@ module PlannedMoves =
         iCal.AddTimeZone(timezoneinfo) |> ignore
         iCal.Method <- "PUBLISH"
 
-        plan.ScheduledMoves |>
-            Seq.iter(fun m ->
-
+        plan.ScheduledMoves
+            |> Seq.filter(fun m -> (DateTime.Today.Subtract(m.Day)).TotalDays <= 1.0)
+            |> Seq.iter(fun m ->
                 let event = iCal.Create<Event>()
                 event.Properties.Remove("SEQUENCE") |> ignore
 
